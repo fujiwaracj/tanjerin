@@ -1,5 +1,15 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+
+- [ ] Authentication
+- [ ] Payment
+
+https://github.com/deadcoder0904/next-14-lucia-v3-sqlite-drizzle-conform-zod-email-verification-otp-server-actions/
+https://github.com/Elliott-Chong/chatpdf-yt
+https://lucia-auth.com/
+https://oslo.js.org/
+https://arctic.js.org/
+
 ## Getting Started
 
 First, run the development server:
