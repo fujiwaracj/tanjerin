@@ -41,7 +41,7 @@ export default function Chat() {
         <h3 className='text-base/4 font-semibold my-4 text-orange-800'>
           About
         </h3>
-        <p>Tanjerin is a tool for generating artificially generated recipes using generative AI, go ahead and type out a simple prompt like <strong><em>"Hello! Its currently 5:00PM and I wanted to create a simple meal for my dinner so that I can go ahead and sleep later, make sure it is light and simple enough to make"</em></strong></p>
+        <p>Tanjerin is a tool for generating artificially generated recipes using generative AI, go ahead and type out a simple prompt like <strong><em>&quot;Hello! Its currently 5:00PM and I wanted to create a simple meal for my dinner so that I can go ahead and sleep later, make sure it is light and simple enough to make&quot;</em></strong></p>
       </div>
     </div>
   );
