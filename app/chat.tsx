@@ -1,7 +1,9 @@
 'use client'
 
 import { useCompletion } from 'ai/react'
-import ReactMarkdown from 'react-markdown'
+import { useEffect, useRef } from 'react'
+import autoAnimate from '@formkit/auto-animate'
+import { useRemark, Remark } from 'react-remark'
 
 export function Chat() {
     const {
@@ -15,6 +17,25 @@ export function Chat() {
         initialInput:
             'Hello! Its currently 5:00PM and I wanted to create a simple meal for my dinner so that I can go ahead and sleep later, make sure it is light and simple enough to make',
     })
+    const [content, setContent] = useRemark()
+    const chatParent = useRef(null)
+
+    useEffect(() => {
+        chatParent.current && autoAnimate(chatParent.current)
+        setContent(completion)
+    }, [chatParent, completion, setContent])
+
+    const Result = () => {
+        if (completion === '') {
+            return (
+                <div className="text-center font-semibold text-orange-800/80">
+                    Generate your first recipe by entering a prompt
+                </div>
+            )
+        }
+
+        return content
+    }
 
     return (
         <div className="mx-auto flex h-full flex-col md:h-fit lg:max-w-screen-xl lg:px-8">
@@ -27,15 +48,9 @@ export function Chat() {
                             </h3>
                         </div>
                         <div className="my-4 min-h-32 overflow-y-auto rounded-lg border border-orange-200 bg-orange-100 p-4 shadow md:max-w-screen-sm">
-                            {completion === '' ? (
-                                <div className="text-center font-semibold text-orange-800/80">
-                                    Generate your first recipe by entering a prompt
-                                </div>
-                            ) : (
-                                <ReactMarkdown className="prose prose-orange px-4 lg:prose-xl">
-                                    {completion}
-                                </ReactMarkdown>
-                            )}
+                            <div ref={chatParent} className='prose prose-orange lg:prose-xl'>
+                                <Result />
+                            </div>
                         </div>
                     </div>
                     <form onSubmit={handleSubmit} className="grid gap-y-4">
