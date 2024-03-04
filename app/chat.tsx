@@ -28,7 +28,7 @@ export function Chat() {
                         </div>
                         <div className="my-4 min-h-32 overflow-y-auto rounded-lg border border-orange-200 bg-orange-100 p-4 shadow md:max-w-screen-sm">
                             {completion === '' ? (
-                                <div className="text-center text-orange-800/80">
+                                <div className="text-center font-semibold text-orange-800/80">
                                     Generate your first recipe by entering a prompt
                                 </div>
                             ) : (
