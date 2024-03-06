@@ -49,7 +49,6 @@ export const customer = pgTable('customer', {
     .references(() => user.id)
     .notNull()
     .primaryKey(),
-  stripeCustomerId: text('stripe_customer_id').notNull(),
 })
 
 export const pricingPlanInterval = pgEnum('pricing_plan_interval', [
@@ -68,13 +67,6 @@ export const subscription = pgTable('subscription', {
   userId: text('user_id')
     .notNull()
     .references(() => user.id),
-  stripeCustomerId: text('stripe_customer_id'),
-  stripeSubscriptionId: text('stripe_subscription_id'),
-  stripePriceId: text('stripe_price_id'),
-  stripeCurrentPeriodAt: timestamp('stripe_current_period_at', {
-    withTimezone: true,
-    mode: 'date',
-  }),
   createdAt: timestamp('created_at', {
     withTimezone: true,
     mode: 'date',
