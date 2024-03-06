@@ -1,32 +1,30 @@
 'use client'
 
-import { useCompletion } from 'ai/react'
+import { useChat } from 'ai/react'
 import { useEffect, useRef } from 'react'
 import autoAnimate from '@formkit/auto-animate'
-import { useRemark, Remark } from 'react-remark'
+import { Remark } from 'react-remark'
 
 export function Chat() {
     const {
-        completion,
+        messages,
         input,
         handleInputChange,
         handleSubmit,
         isLoading,
         stop,
-    } = useCompletion({
+    } = useChat({
         initialInput:
             'Hello! Its currently 5:00PM and I wanted to create a simple meal for my dinner so that I can go ahead and sleep later, make sure it is light and simple enough to make',
     })
-    const [content, setContent] = useRemark()
     const chatParent = useRef(null)
 
     useEffect(() => {
         chatParent.current && autoAnimate(chatParent.current)
-        setContent(completion)
-    }, [chatParent, completion, setContent])
+    }, [chatParent])
 
     const Result = () => {
-        if (completion === '') {
+        if (messages.length === 0) {
             return (
                 <div className="text-center font-semibold text-orange-800/80">
                     Generate your first recipe by entering a prompt
@@ -34,7 +32,14 @@ export function Chat() {
             )
         }
 
-        return content
+        return messages.map(m => (
+            <div key={m.id}>
+                {m.role === 'user' ? 'User:' : 'AI:'}
+                <Remark>
+                    {m.content}
+                </Remark>
+            </div>
+        ))
     }
 
     return (
