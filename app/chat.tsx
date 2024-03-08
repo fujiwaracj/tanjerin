@@ -36,17 +36,15 @@ export function Chat() {
         return messages.map(m => (
             <div className='my-4' key={m.id}>
                 <div className='flex'>
-                    <div className='mt-8 px-4'>
-                        {m.role === 'user' ? <User className='text-orange-900' /> : <Citrus className='text-orange-900' />}
+                    <div className='mx-2 p-2.5 rounded-full bg-orange-100 size-12 flex items-center justify-center'>
+                        {m.role === 'user' ? <User className='text-orange-900 size-8' /> : <Citrus className='text-orange-900 size-8' />}
                     </div>
-                    <div className='basis-full'>
+                    <div className='basis-full bg-orange-50 rounded-lg px-4 '>
                         <Remark>
                             {m.content}
                         </Remark>
                     </div>
                 </div>
-
-                <hr />
             </div>
         ))
     }
@@ -56,7 +54,7 @@ export function Chat() {
             <div className="h-full gap-x-4 md:h-fit lg:flex-row">
                 <div className="z-10 mx-auto flex h-full flex-col justify-between rounded-lg border p-2 px-6 shadow md:mt-4 md:h-fit lg:max-w-screen-sm">
                     <div className="flex max-h-[60svh] flex-col">
-                        <div className="my-4 min-h-32 overflow-y-auto rounded-lg border border-orange-800 p-4 shadow md:max-w-screen-sm">
+                        <div className="my-4 min-h-32 overflow-y-auto rounded-lg p-4  md:max-w-screen-sm">
                             <div className='prose prose-orange lg:prose-xl'>
                                 <Result />
                             </div>
