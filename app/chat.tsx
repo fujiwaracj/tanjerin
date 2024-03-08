@@ -35,7 +35,7 @@ export function Chat() {
 
         return messages.map(m => (
             <div className='my-4' key={m.id}>
-                <div className='flex'>
+                <div className='flex flex-col lg:flex-row'>
                     <div className='mx-2 p-2.5 rounded-full bg-orange-100 size-12 flex items-center justify-center'>
                         {m.role === 'user' ? <User className='text-orange-900 size-8' /> : <Citrus className='text-orange-900 size-8' />}
                     </div>
