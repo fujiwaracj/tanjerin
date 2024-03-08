@@ -4,6 +4,7 @@ import { useChat } from 'ai/react'
 import { useEffect, useRef } from 'react'
 import autoAnimate from '@formkit/auto-animate'
 import { Remark } from 'react-remark'
+import { User, Citrus } from 'lucide-react'
 
 export function Chat() {
     const {
@@ -26,18 +27,26 @@ export function Chat() {
     const Result = () => {
         if (messages.length === 0) {
             return (
-                <div className="text-center font-semibold text-orange-800/80">
-                    Generate your first recipe by entering a prompt
-                </div>
+                <p className="text-center font-semibold text-orange-800/80">
+                    Generate your first meal recipe by entering a prompt
+                </p>
             )
         }
 
         return messages.map(m => (
-            <div key={m.id}>
-                {m.role === 'user' ? 'User:' : 'AI:'}
-                <Remark>
-                    {m.content}
-                </Remark>
+            <div className='my-4' key={m.id}>
+                <div className='flex'>
+                    <div className='mt-8 px-4'>
+                        {m.role === 'user' ? <User className='text-orange-900' /> : <Citrus className='text-orange-900' />}
+                    </div>
+                    <div className='basis-full'>
+                        <Remark>
+                            {m.content}
+                        </Remark>
+                    </div>
+                </div>
+
+                <hr />
             </div>
         ))
     }
@@ -47,20 +56,15 @@ export function Chat() {
             <div className="h-full gap-x-4 md:h-fit lg:flex-row">
                 <div className="z-10 mx-auto flex h-full flex-col justify-between rounded-lg border p-2 px-6 shadow md:mt-4 md:h-fit lg:max-w-screen-sm">
                     <div className="flex max-h-[60svh] flex-col">
-                        <div>
-                            <h3 className="my-4 text-base/4 font-semibold text-orange-800">
-                                Generate you next dish using AI
-                            </h3>
-                        </div>
-                        <div className="my-4 min-h-32 overflow-y-auto rounded-lg border border-orange-200 bg-orange-100 p-4 shadow md:max-w-screen-sm">
-                            <div ref={chatParent} className='prose prose-orange lg:prose-xl'>
+                        <div className="my-4 min-h-32 overflow-y-auto rounded-lg border border-orange-800 p-4 shadow md:max-w-screen-sm">
+                            <div className='prose prose-orange lg:prose-xl'>
                                 <Result />
                             </div>
                         </div>
                     </div>
                     <form onSubmit={handleSubmit} className="grid gap-y-4">
                         <textarea
-                            className="inline-flex min-h-48 rounded-md border border-orange-200 bg-orange-100 px-3 py-1.5 text-xl font-medium text-orange-800 outline-2 outline-offset-2 placeholder:text-orange-800/50 focus-visible:outline focus-visible:outline-orange-200"
+                            className="inline-flex min-h-48 rounded-md border border-orange-800 px-3 py-1.5 text-xl font-medium text-orange-800 outline-2 outline-offset-2 placeholder:text-orange-800/50 focus-visible:outline-2 focus-visible:outline-orange-500"
                             value={input}
                             placeholder="What do you want to cook?"
                             required
@@ -71,14 +75,14 @@ export function Chat() {
                             <button
                                 type="button"
                                 onClick={stop}
-                                className="h-9 rounded-md border border-orange-200 bg-orange-100  px-3  py-1.5 font-medium text-orange-900 outline outline-2 focus-visible:outline-orange-200"
+                                className="h-9 rounded-md border border-orange-800 px-3  py-1.5 font-medium text-orange-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-orange-500"
                             >
                                 Stop
                             </button>
                         ) : (
                             <button
                                 type="submit"
-                                className="h-9 rounded-md border border-orange-200 bg-orange-100 px-3  py-1.5 font-medium text-orange-900 outline outline-2 focus-visible:outline-orange-200"
+                                className="h-9 rounded-md border border-orange-800 px-3  py-1.5 font-medium text-orange-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-orange-500"
                             >
                                 Submit
                             </button>

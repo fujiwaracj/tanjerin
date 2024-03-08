@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} h-dvh bg-orange-50 text-orange-950`}>
+      <body className={`${inter.className} h-dvh text-orange-950`}>
         {children}
         <Analytics />
         <SpeedInsights />

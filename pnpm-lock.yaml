@@ -50,6 +50,9 @@ dependencies:
   lucia:
     specifier: ^3.0.1
     version: 3.0.1
+  lucide-react:
+    specifier: ^0.350.0
+    version: 0.350.0(react@18.2.0)
   next:
     specifier: 14.1.2
     version: 14.1.2(react-dom@18.2.0)(react@18.2.0)
@@ -3810,6 +3813,14 @@ packages:
     resolution: {integrity: sha512-srwUkTCGgr6N4mFpaKZVZy5kwiRZdsrbIDv9Wrjar+xyw1MjojYQQ7oRbegjRWOZ3yI8xOOclK3sz/rga2J7/w==}
     dependencies:
       oslo: 1.0.1
+    dev: false
+
+  /lucide-react@0.350.0(react@18.2.0):
+    resolution: {integrity: sha512-5IZVKsxxG8Nn81gpsz4XLNgCAXkppCh0Y0P0GLO39h5iVD2WEaB9of6cPkLtzys1GuSfxJxmwsDh487y7LAf/g==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /magic-string@0.30.8:
