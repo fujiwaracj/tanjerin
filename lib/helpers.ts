@@ -1,3 +1,5 @@
+import { customAlphabet } from 'nanoid'
+
 export const getURL = (path: string = '') => {
   // Check if NEXT_PUBLIC_SITE_URL is set and non-empty. Set this to your site URL in production env.
   let url =
@@ -66,3 +68,8 @@ export const calculateTrialEndUnixTimestamp = (
   ) // Add trial days
   return Math.floor(trialEnd.getTime() / 1000) // Convert to Unix timestamp in seconds
 }
+
+export const nanoid = customAlphabet(
+  '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
+  7
+)
