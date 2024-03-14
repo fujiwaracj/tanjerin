@@ -44,10 +44,9 @@ const EmptyScreen = ({ defaultValues, setInput, }: { defaultValues: string[], se
             <p className='text-[#582D1D]'>
                 Here are a few examples for you to get started:
             </p>
-            <div className='flex gap-4 py-4 px-2 overflow-x-scroll'>
-                <button onClick={() => setInput(defaultValues[0])}>
-
-                    <div className='min-w-[192px] min-h-[192px] bg-[#FFDFB5] border-[#FFC182] border rounded-lg px-4 py-2'>
+            <div className='flex gap-4 py-4 px-2 overflow-x-scroll lg:overflow-auto snap-x snap-mandatory'>
+                <button className="group" onClick={() => setInput(defaultValues[0])}>
+                    <div className='w-[192px] min-h-[192px] max-w-[192px] bg-[#FFDFB5] border-[#FFC182] border rounded-lg px-4 py-2 overflow-hidden group-hover:bg-[#FFD19A] transition-colors ease-out duration-200'>
                         <div className="w-[40px] h-[40px] rounded-full inline-flex justify-center items-center border-[#FFC182] bg-[#FFEFD6] border shadow">
                             <LightbulbIcon />
                         </div>
@@ -56,8 +55,8 @@ const EmptyScreen = ({ defaultValues, setInput, }: { defaultValues: string[], se
                         </p>
                     </div>
                 </button>
-                <button onClick={() => setInput(defaultValues[1])}>
-                    <div className='min-w-[192px] min-h-[192px] bg-[#FFDFB5] border-[#FFC182] border rounded-lg px-4 py-2'>
+                <button className="group" onClick={() => setInput(defaultValues[1])}>
+                    <div className='w-[192px] min-h-[192px] max-w-[192px] bg-[#FFDFB5] border-[#FFC182] border rounded-lg px-4 py-2 overflow-hidden group-hover:bg-[#FFD19A] transition-colors ease-out duration-200'>
                         <div className="w-[40px] h-[40px] rounded-full inline-flex justify-center items-center border-[#FFC182] bg-[#FFEFD6] border shadow">
                             <LightbulbIcon />
                         </div>
@@ -67,8 +66,8 @@ const EmptyScreen = ({ defaultValues, setInput, }: { defaultValues: string[], se
                         </p>
                     </div>
                 </button>
-                <button onClick={() => setInput(defaultValues[2])}>
-                    <div className='min-w-[192px] min-h-[192px] bg-[#FFDFB5] border-[#FFC182] border rounded-lg px-4 py-2'>
+                <button className="group" onClick={() => setInput(defaultValues[2])}>
+                    <div className='w-[192px] min-h-[192px] max-w-[192px] bg-[#FFDFB5] border-[#FFC182] border rounded-lg px-4 py-2 overflow-hidden group-hover:bg-[#FFD19A] transition-colors ease-out duration-200'>
                         <div className="w-[40px] h-[40px] rounded-full inline-flex justify-center items-center border-[#FFC182] bg-[#FFEFD6] border shadow">
                             <LightbulbIcon />
                         </div>
@@ -77,7 +76,6 @@ const EmptyScreen = ({ defaultValues, setInput, }: { defaultValues: string[], se
                         </p>
                     </div>
                 </button>
-
             </div>
         </>
     )
@@ -110,9 +108,9 @@ const ChatMessages = ({ messages, setInput, defaultValues }: { messages: Message
 const PromptForm = ({ handleSubmit, input, handleInputChange, isLoading, stop }: { handleSubmit: React.FormEventHandler, input: string, setInput: (input: string) => void, isLoading: boolean, handleInputChange: React.ChangeEventHandler<HTMLTextAreaElement>, stop: () => void }) => {
     return (
         <div className="fixed bottom-0 inset-x-0">
-            <form onSubmit={handleSubmit} className='backdrop-blur flex items-center justify-between border min-w-[284px] border-[#FFC182] bg-[#FFDFB5]/50 rounded-lg px-2 mx-4 my-4 focus:outline'>
+            <form onSubmit={handleSubmit} className='backdrop-blur flex max-w-screen-md lg:mx-auto items-center justify-between border min-w-[284px] border-[#FFC182] bg-[#FFDFB5]/50 rounded-lg px-2 mx-4 my-4 focus:outline'>
                 <Textarea
-                    className="inline-flex flex-1 py-[0.85rem] px-4 rounded-md align-middle font-medium bg-transparent text-[#CC4E00] placeholder:text-[#CC4E00]/50 outline-none"
+                    className="inline-flex flex-1 lg:flex-0 resize-none py-[0.85rem] px-4 rounded-md align-middle font-medium bg-transparent text-[#CC4E00] placeholder:text-[#CC4E00]/50 outline-none"
                     placeholder="Send a message."
                     required
                     onChange={handleInputChange}
@@ -171,20 +169,14 @@ export function Chat() {
     }, [inView, entry, isAtBottom, isLoading])
 
     return (
-        <div className="mx-auto flex h-full flex-col md:h-fit lg:max-w-screen-xl lg:px-8">
-            <div className="h-full gap-x-4 md:h-fit lg:flex-row">
-                <div className="z-10 mx-auto flex h-full flex-col justify-between lg:rounded-lg  lg:py-2 lg:shadow md:mt-4 md:h-fit lg:max-w-screen-sm">
-                    <main className="flex max-h-full flex-col">
-                        <div className="min-h-32 overflow-y-auto rounded-lg p-4  md:max-w-screen-sm">
-                            <div className='relative mx-auto max-w-2xl px-4 pb-[200px]'>
-                                <ChatMessages defaultValues={defaultValues} messages={messages} setInput={setInput} />
-                                <div ref={ref} className='h-px w-full' />
-                            </div>
-                        </div>
-                        <PromptForm handleSubmit={handleSubmit} input={input} setInput={setInput} isLoading={isLoading} handleInputChange={handleInputChange} stop={stop} />
-                    </main>
+        <div className="mx-auto flex flex-col lg:max-w-screen-xl lg:px-8">
+            <main className="flex flex-col">
+                <div className='relative mx-auto max-w-2xl px-4 pb-[200px]  w-full'>
+                    <ChatMessages defaultValues={defaultValues} messages={messages} setInput={setInput} />
+                    <div ref={ref} className='h-px w-full' />
                 </div>
-            </div>
+                <PromptForm handleSubmit={handleSubmit} input={input} setInput={setInput} isLoading={isLoading} handleInputChange={handleInputChange} stop={stop} />
+            </main>
         </div>
     )
 }
