@@ -1,12 +1,12 @@
-import { createEnv } from "@t3-oss/env-nextjs";
-import { z } from "zod";
+import { createEnv } from '@t3-oss/env-nextjs'
+import { z } from 'zod'
 
 export const env = createEnv({
-    server: {
-        POSTGRES_URL: z.string().url(),
-        GOOGLE_API_KEY: z.string(),
-    },
-    client: {},
-    // For Next.js >= 13.4.4, you only need to destructure client variables:
-    experimental__runtimeEnv: {}
-});
+  server: {
+    POSTGRES_URL: z.string().url(),
+    GOOGLE_API_KEY: z.string(),
+  },
+  client: {},
+  // For Next.js >= 13.4.4, you only need to destructure client variables:
+  experimental__runtimeEnv: {},
+})
