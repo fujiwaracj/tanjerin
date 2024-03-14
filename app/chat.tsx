@@ -44,7 +44,7 @@ const EmptyScreen = ({ defaultValues, setInput, }: { defaultValues: string[], se
             <p className='text-[#582D1D]'>
                 Here are a few examples for you to get started:
             </p>
-            <div className='flex gap-4 py-4 px-2 overflow-x-scroll lg:overflow-auto snap-x snap-mandatory'>
+            <div className='flex gap-4 py-4 overflow-x-scroll lg:overflow-auto snap-x snap-mandatory'>
                 <button className="group" onClick={() => setInput(defaultValues[0])}>
                     <div className='w-[192px] min-h-[192px] max-w-[192px] bg-[#FFDFB5] border-[#FFC182] border rounded-lg px-4 py-2 overflow-hidden group-hover:bg-[#FFD19A] transition-colors ease-out duration-200'>
                         <div className="w-[40px] h-[40px] rounded-full inline-flex justify-center items-center border-[#FFC182] bg-[#FFEFD6] border shadow">
@@ -86,8 +86,8 @@ const ChatMessages = ({ messages, setInput, defaultValues }: { messages: Message
         <>
             {
                 messages.length ? messages.map(m => (
-                    <div className='my-4 bg-[#FFDFB5] border border-[#FFC182] rounded-lg px-4 ' key={m.id}>
-                        <div className='flex flex-col lg:flex-row'>
+                    <div className='my-4 bg-[#FFDFB5] border border-[#FFC182] rounded-lg px-4' key={m.id}>
+                        <div className='flex flex-col lg:flex-row py-4 gap-2'>
                             <div className='lg:mx-2 my-2 lg:my-0 p-2.5 rounded-full bg-[#FFEFD6] border border-[#FFC182] size-12 flex items-center justify-center'>
                                 {m.role === 'user' ? <User className='text-orange-900 size-8' /> : <Citrus className='text-orange-900 size-8' />}
                             </div>
@@ -171,10 +171,10 @@ export function Chat() {
     return (
         <div className="mx-auto flex flex-col lg:max-w-screen-xl lg:px-8">
             <main className="flex flex-col">
-                <div className='relative mx-auto max-w-2xl px-4 pb-[200px]  w-full'>
+                <div className='relative mx-auto max-w-2xl px-4 pb-[200px] pt-4 w-full'>
                     <ChatMessages defaultValues={defaultValues} messages={messages} setInput={setInput} />
-                    <div ref={ref} className='h-px w-full' />
                 </div>
+                <div ref={ref} className='h-px w-full' />
                 <PromptForm handleSubmit={handleSubmit} input={input} setInput={setInput} isLoading={isLoading} handleInputChange={handleInputChange} stop={stop} />
             </main>
         </div>
