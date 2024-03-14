@@ -1,8 +1,6 @@
 'use client'
 
 import { useChat } from 'ai/react'
-import { useEffect, useRef } from 'react'
-import autoAnimate from '@formkit/auto-animate'
 import { Remark } from 'react-remark'
 import { User, Citrus } from 'lucide-react'
 
@@ -18,11 +16,6 @@ export function Chat() {
         initialInput:
             'Hello! Its currently 5:00PM and I wanted to create a simple meal for my dinner so that I can go ahead and sleep later, make sure it is light and simple enough to make',
     })
-    const chatParent = useRef(null)
-
-    useEffect(() => {
-        chatParent.current && autoAnimate(chatParent.current)
-    }, [chatParent])
 
     const Result = () => {
         if (messages.length === 0) {
