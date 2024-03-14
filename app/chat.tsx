@@ -85,25 +85,29 @@ const EmptyScreen = ({ defaultValues, setInput, }: { defaultValues: string[], se
 
 const ChatMessages = ({ messages, setInput, defaultValues }: { messages: Message[], setInput: (input: string) => void, defaultValues: string[] }) => {
     return (
-        <div className='relative mx-auto max-w-2xl px-4'>
-            {messages.length ? messages.map(m => (
-                <div className='my-4' key={m.id}>
-                    <div className='flex flex-col lg:flex-row'>
-                        <div className='lg:mx-2 my-2 lg:my-0 p-2.5 rounded-full bg-orange-100 size-12 flex items-center justify-center'>
-                            {m.role === 'user' ? <User className='text-orange-900 size-8' /> : <Citrus className='text-orange-900 size-8' />}
-                        </div>
-                        <div className='basis-full bg-orange-50 rounded-lg px-4 '>
-                            <MemoizedReactMarkdown>
-                                {m.content}
-                            </MemoizedReactMarkdown>
+        <>
+            {
+                messages.length ? messages.map(m => (
+                    <div className='my-4 bg-[#FFDFB5] border border-[#FFC182] rounded-lg px-4 ' key={m.id}>
+                        <div className='flex flex-col lg:flex-row'>
+                            <div className='lg:mx-2 my-2 lg:my-0 p-2.5 rounded-full bg-[#FFEFD6] border border-[#FFC182] size-12 flex items-center justify-center'>
+                                {m.role === 'user' ? <User className='text-orange-900 size-8' /> : <Citrus className='text-orange-900 size-8' />}
+                            </div>
+                            <div>
+                                <MemoizedReactMarkdown>
+                                    {m.content}
+                                </MemoizedReactMarkdown>
+                            </div>
                         </div>
                     </div>
-                </div>
-            )) : (<EmptyScreen defaultValues={defaultValues} setInput={setInput} />)}
-        </div>)
+                )) : (<EmptyScreen defaultValues={defaultValues} setInput={setInput} />)
+            }
+
+        </>
+    )
 }
 
-const PromptForm = ({ handleSubmit, input, handleInputChange, isLoading }: { handleSubmit: React.FormEventHandler, input: string, setInput: (input: string) => void, isLoading: boolean, handleInputChange: React.ChangeEventHandler<HTMLTextAreaElement> }) => {
+const PromptForm = ({ handleSubmit, input, handleInputChange, isLoading, stop }: { handleSubmit: React.FormEventHandler, input: string, setInput: (input: string) => void, isLoading: boolean, handleInputChange: React.ChangeEventHandler<HTMLTextAreaElement>, stop: () => void }) => {
     return (
         <div className="fixed bottom-0 inset-x-0">
             <form onSubmit={handleSubmit} className='backdrop-blur flex items-center justify-between border min-w-[284px] border-[#FFC182] bg-[#FFDFB5]/50 rounded-lg px-2 mx-4 my-4 focus:outline'>
@@ -164,7 +168,7 @@ export function Chat() {
                 block: 'start'
             })
         }
-    }, [])
+    }, [inView, entry, isAtBottom, isLoading])
 
     return (
         <div className="mx-auto flex h-full flex-col md:h-fit lg:max-w-screen-xl lg:px-8">
@@ -172,13 +176,13 @@ export function Chat() {
                 <div className="z-10 mx-auto flex h-full flex-col justify-between lg:rounded-lg  lg:py-2 lg:shadow md:mt-4 md:h-fit lg:max-w-screen-sm">
                     <main className="flex max-h-full flex-col">
                         <div className="min-h-32 overflow-y-auto rounded-lg p-4  md:max-w-screen-sm">
-                            <div>
+                            <div className='relative mx-auto max-w-2xl px-4 pb-[200px]'>
                                 <ChatMessages defaultValues={defaultValues} messages={messages} setInput={setInput} />
                                 <div ref={ref} className='h-px w-full' />
                             </div>
                         </div>
+                        <PromptForm handleSubmit={handleSubmit} input={input} setInput={setInput} isLoading={isLoading} handleInputChange={handleInputChange} stop={stop} />
                     </main>
-                    <PromptForm handleSubmit={handleSubmit} input={input} setInput={setInput} isLoading={isLoading} handleInputChange={handleInputChange} />
                 </div>
             </div>
         </div>
