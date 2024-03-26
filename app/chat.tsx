@@ -46,7 +46,7 @@ const EmptyScreen = ({
   defaultValues,
   setInput,
 }: {
-  defaultValues: string[]
+  defaultValues: { id: number; message: string }[]
   setInput: (input: string) => void
 }) => {
   return (
@@ -63,12 +63,16 @@ const EmptyScreen = ({
       </p>
       <div className="flex snap-x snap-mandatory gap-4 overflow-x-scroll py-4 lg:overflow-auto">
         {defaultValues.map((val) => (
-          <button className="group" onClick={() => setInput(val)}>
+          <button
+            key={val.id}
+            className="group"
+            onClick={() => setInput(val.message)}
+          >
             <div className="min-h-[192px] w-[192px] max-w-[192px] overflow-hidden rounded-lg border border-[#FFC182] bg-[#FFDFB5] px-4 py-2 transition-colors duration-200 ease-out group-hover:bg-[#FFD19A]">
               <div className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-full border border-[#FFC182] bg-[#FFEFD6] shadow">
                 <LightbulbIcon />
               </div>
-              <p>{val}</p>
+              <p>{val.message}</p>
             </div>
           </button>
         ))}
@@ -84,7 +88,7 @@ const ChatMessages = ({
 }: {
   messages: Message[]
   setInput: (input: string) => void
-  defaultValues: string[]
+  defaultValues: { id: number; message: string }[]
 }) => {
   return (
     <>
@@ -181,9 +185,20 @@ export function Chat() {
   })
   const isAtBottom = useAtBottom()
   const defaultValues = [
-    'Develop a hearty and comforting stew inspired by French cuisine.',
-    "Create a one-pot Thai dish that's perfect for a weeknight meal.",
-    'Design a vegetarian appetizer platter with global influences.',
+    {
+      id: 0,
+      message:
+        'Develop a hearty and comforting stew inspired by French cuisine.',
+    },
+    {
+      id: 1,
+      message:
+        "Create a one-pot Thai dish that's perfect for a weeknight meal.",
+    },
+    {
+      id: 2,
+      message: 'Design a vegetarian appetizer platter with global influences.',
+    },
   ]
 
   useEffect(() => {
