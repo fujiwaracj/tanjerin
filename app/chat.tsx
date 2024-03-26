@@ -62,30 +62,16 @@ const EmptyScreen = ({
         Here are a few examples for you to get started:
       </p>
       <div className="flex snap-x snap-mandatory gap-4 overflow-x-scroll py-4 lg:overflow-auto">
-        <button className="group" onClick={() => setInput(defaultValues[0])}>
-          <div className="min-h-[192px] w-[192px] max-w-[192px] overflow-hidden rounded-lg border border-[#FFC182] bg-[#FFDFB5] px-4 py-2 transition-colors duration-200 ease-out group-hover:bg-[#FFD19A]">
-            <div className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-full border border-[#FFC182] bg-[#FFEFD6] shadow">
-              <LightbulbIcon />
+        {defaultValues.map((val) => (
+          <button className="group" onClick={() => setInput(val)}>
+            <div className="min-h-[192px] w-[192px] max-w-[192px] overflow-hidden rounded-lg border border-[#FFC182] bg-[#FFDFB5] px-4 py-2 transition-colors duration-200 ease-out group-hover:bg-[#FFD19A]">
+              <div className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-full border border-[#FFC182] bg-[#FFEFD6] shadow">
+                <LightbulbIcon />
+              </div>
+              <p>{val}</p>
             </div>
-            <p>{defaultValues[0]}</p>
-          </div>
-        </button>
-        <button className="group" onClick={() => setInput(defaultValues[1])}>
-          <div className="min-h-[192px] w-[192px] max-w-[192px] overflow-hidden rounded-lg border border-[#FFC182] bg-[#FFDFB5] px-4 py-2 transition-colors duration-200 ease-out group-hover:bg-[#FFD19A]">
-            <div className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-full border border-[#FFC182] bg-[#FFEFD6] shadow">
-              <LightbulbIcon />
-            </div>
-            <p>{defaultValues[1]}</p>
-          </div>
-        </button>
-        <button className="group" onClick={() => setInput(defaultValues[2])}>
-          <div className="min-h-[192px] w-[192px] max-w-[192px] overflow-hidden rounded-lg border border-[#FFC182] bg-[#FFDFB5] px-4 py-2 transition-colors duration-200 ease-out group-hover:bg-[#FFD19A]">
-            <div className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-full border border-[#FFC182] bg-[#FFEFD6] shadow">
-              <LightbulbIcon />
-            </div>
-            <p>{defaultValues[2]}</p>
-          </div>
-        </button>
+          </button>
+        ))}
       </div>
     </>
   )
